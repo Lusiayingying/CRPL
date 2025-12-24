@@ -1,0 +1,11 @@
+# CRPL - Celestelin Rhythm Perception Layer
+# Requirements
+
+# Core
+python-dateutil>=2.8.0
+
+# GUI Demo (optional)
+# tkinter is included in standard Python distribution
+
+# For development
+typing-extensions>=4.0.0
