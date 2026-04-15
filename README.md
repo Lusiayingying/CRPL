@@ -1,170 +1,121 @@
-# CRPL: Celestelin Rhythm Perception Layer
+<p align="center">
+  <h1 align="center">🎹 CRPL — Celestelin Rhythm Perception Layer</h1>
+  <p align="center">
+    <i>A fine-grained keystroke rhythm perception framework for human cognition-aware AI agents</i>
+  </p>
+  <p align="center">
+    <img src="https://img.shields.io/badge/python-3.8+-blue.svg" alt="Python 3.8+">
+    <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="MIT License">
+    <img src="https://img.shields.io/badge/fields-24-purple.svg" alt="24 Fields">
+    <img src="https://img.shields.io/badge/categories-7-orange.svg" alt="7 Categories">
+    <img src="https://img.shields.io/badge/DOI-10.13140%2FRG.2.2.11079.15525-blue" alt="DOI">
+  </p>
+</p>
 
-[![arXiv](https://img.shields.io/badge/arXiv-2412.xxxxx-b31b1b.svg)](https://arxiv.org/abs/2412.xxxxx)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+---
 
-> **Affective Typing Patterns: A Fine-Grained Keystroke-Rhythm Perception Layer for Multi-Agent Cognition Systems**
+> **"The typing patterns humans produce are not noise to be filtered — they are signals worth perceiving."**
 
-CRPL is a novel framework that models keystroke rhythm as a perceptual signal for inferring users' cognitive and emotional states. Unlike traditional keystroke dynamics research focused on security authentication, CRPL positions typing rhythm as a foundation for AI agent perception and empathetic response generation.
+CRPL is a novel framework that models keystroke rhythm as a **perceptual signal** for inferring users' cognitive and emotional states. Unlike traditional keystroke dynamics research focused on security authentication, CRPL positions typing rhythm as a foundation for **AI agent perception and empathetic response generation**.
 
-![CRPL Architecture](docs/CRPL_Architecture.svg)
+![CRPL Architecture](docs/CRPL_Architecture.png)
 
 ## ✨ Key Features
 
 - **24 Fine-Grained Behavioral Features** organized into 7 functional categories
 - **Real-Time Rhythm Detection** with millisecond-precision timestamps
-- **Cross-Language Support** including Chinese IME (Pinyin) input
+- **Dual-Layer Rhythm Model** for Chinese Pinyin input — capturing cognitive translation process
+- **4 Cognitive Mode Detection**: Expressive, Narrative, Deliberative, Deep Thinking
+- **Cross-Language Support** including Chinese IME (Pinyin) composition events
 - **Agent Integration Patterns** for LLM-based systems
-- **Interactive Demo Tools** (GUI + Web)
+- **Interactive Demo Tools** — HTML (zero-dependency), Python GUI, and React
+
+## 🧠 Key Discovery
+
+CRPL captures **cognitive processing modes** rather than emotional states alone:
+
+| Mode | Information State | Rhythm Signature |
+|------|------------------|-----------------|
+| **Expressive** | Known + Certain | fluid, very_fluent, CPM>120 |
+| **Narrative** | Known + Recalled | uneven but fluent |
+| **Deliberative** | Unknown + Uncertain | hesitant, thoughtful pauses |
+| **Deep Thinking** | Complex + Constructive | fragmented, consistency→0 |
+
+**Information certainty influences typing rhythm more directly than emotional valence.**
 
 ## 📊 Feature Categories
 
-| Category | Fields | Description |
-|----------|--------|-------------|
-| 🎯 Baseline Metrics | 7 | Core rhythm signature (CPM, consistency, rhythm_type) |
-| 📈 Basic Statistics | 3 | Aggregate metrics (keystrokes, chars, intervals) |
-| 🔄 Deletion Analysis | 3 | Self-correction patterns |
-| ✏️ Modification Analysis | 2 | Intent revision behavior |
-| 💥 Burst Detection | 3 | Rapid typing segments |
-| 🤔 Hesitation Mapping | 3 | Pause location distribution |
-| 🌊 Fluency Scoring | 2 | Overall fluency assessment |
+| Category | Fields | Description | Psychological Mapping |
+|----------|--------|-------------|----------------------|
+| 📐 Baseline Metrics | 7 | Core rhythm signature | Task engagement, focus level |
+| 📈 Basic Statistics | 3 | Aggregate metrics | Cognitive effort, persistence |
+| 🔄 Deletion Analysis | 3 | Self-correction patterns | Uncertainty, perfectionism |
+| ✏️ Modification Analysis | 2 | Intent revision behavior | Decision stability |
+| 💥 Burst Detection | 3 | Rapid typing segments | Emotional arousal, inspiration |
+| 🤔 Hesitation Mapping | 3 | Pause location distribution | Cognitive load, word search |
+| 🌊 Fluency Scoring | 2 | Overall fluency assessment | Flow state, task proficiency |
+| 📝 Trajectory | 1 | Complete event history | Behavioral audit trail |
 
-## 🚀 Quick Start
+## 🚀 Try It Now
 
-### Installation
+### ⭐ HTML Demo (Recommended — Zero Dependencies!)
 
-```bash
-git clone https://github.com/CelestelinAgent/CRPL.git
-cd CRPL
-pip install -r requirements.txt
+Just open in any browser. No installation needed:
+
+```
+demo/CRPL_RhythmDetectorPro.html
 ```
 
-### Basic Usage
+Double-click the file → type anything (Chinese or English) → click **Analyze** → see your rhythm profile!
+
+### Python GUI Demo
+
+```bash
+cd demo
+python test_gui.py
+```
+
+Works on Windows/Mac/Linux. Full Chinese IME support. No additional packages needed.
+
+### Python Library Usage
 
 ```python
 from crpl import RhythmDetector
 
-# Initialize detector
 detector = RhythmDetector()
-
-# Start monitoring
 detector.start_monitoring()
 
 # Record keystrokes (integrate with your input handler)
 detector.record_keystroke('H', 'type')
-detector.record_keystroke('i', 'type')
+detector.record_keystroke('e', 'type')
 # ... more keystrokes ...
 
-# Get analysis results
-results = detector.finish_monitoring("Hi there!")
-print(results)
+results = detector.finish_monitoring("Hello!")
+print(results['rhythm_type'])    # e.g., 'fluid'
+print(results['fluency_level'])  # e.g., 'very_fluent'
+print(results['consistency'])    # e.g., 0.82
 ```
 
-### Output Example
+## 🇨🇳 Dual-Layer Rhythm Model
 
-```json
-{
-  "timestamp": "2024-12-24T02:30:00Z",
-  "duration_seconds": 15.5,
-  "chars_per_minute": 85.2,
-  "rhythm_type": "fluid",
-  "consistency": 0.823,
-  "fluency_score": 0.891,
-  "fluency_level": "very_fluent",
-  "burst_count": 3,
-  "hesitation_count": 1,
-  "deletion_ratio": 0.05,
-  "pause_pattern": {
-    "short_pauses": 2,
-    "medium_pauses": 0,
-    "long_pauses": 0,
-    "pattern": "choppy"
-  }
-}
+A key innovation: Chinese Pinyin input has a **dual-layer rhythm** invisible to English-only systems.
+
+```
+English: H → e → l → l → o → [done]
+         └─────────────────────────┘
+         Single layer: physical rhythm = expression rhythm
+
+Chinese: n → i → [select "你"] → h → a → o → [select "好"]
+         ├── Layer 1: Pinyin encoding rhythm (physical)
+         └── Layer 2: Candidate selection rhythm (cognitive)
 ```
 
-## 🖥️ Demo Tools
-
-### GUI Demo (Python/Tkinter)
-
-Best for accurate Chinese IME capture:
-
-```bash
-python demo/test_rhythm_gui.py
-```
-
-### Web Demo (React)
-
-For quick testing and visualization:
-
-```bash
-cd demo/web
-npm install
-npm start
-```
-
-## 🎭 Rhythm Types
-
-CRPL classifies typing rhythm into 10 distinct types:
-
-| Type | Speed | Consistency | Interpretation |
-|------|-------|-------------|----------------|
-| `steady_fast` | >120 CPM | High | Confident, skilled |
-| `burst_fast` | >120 CPM | High | Inspired, energized |
-| `fluid` | 60-120 CPM | High | Flow state |
-| `measured` | 60-120 CPM | Low | Analytical thinking |
-| `hesitant` | <60 CPM | Low | Uncertain, exploring |
-| `labored` | <60 CPM | Low | Struggling, fatigued |
-
-## 🔌 Agent Integration
-
-### Pattern 1: Pre-Response Analysis
-
-```python
-async def generate_response(user_input, rhythm_data):
-    if rhythm_data["rhythm_type"] == "hesitant":
-        # User seems uncertain - be supportive
-        system_prompt += "Be encouraging and offer help."
-    elif rhythm_data["burst_count"] > 10:
-        # User is energized - match their energy
-        system_prompt += "Be enthusiastic and engaged."
-    
-    return await llm.generate(system_prompt, user_input)
-```
-
-### Pattern 2: Real-Time Adaptation
-
-```python
-def on_hesitation_detected(duration, location):
-    if duration > 5:  # 5+ second pause
-        # Prepare contextual help
-        show_typing_suggestions()
-```
-
-## 🌏 Chinese IME Support
-
-CRPL handles Chinese Pinyin input with specialized adaptation:
-
-| Metric | English | Chinese (Pinyin) |
-|--------|---------|------------------|
-| keystroke_ratio | ≈1.0 | 3.0-4.0 |
-| Capture method | Direct | Composition Events |
-
-The system correctly interprets higher keystroke ratios as normal for Chinese input rather than indicating difficulty.
-
-## 📝 Citation
-
-If you use CRPL in your research, please cite:
-
-```bibtex
-@article{chen2024crpl,
-  title={Affective Typing Patterns: A Fine-Grained Keystroke-Rhythm Perception Layer for Multi-Agent Cognition Systems},
-  author={Chen, Yingying and Lin, Anran},
-  journal={arXiv preprint arXiv:2412.xxxxx},
-  year={2024}
-}
-```
+| Characteristic | English | Chinese (Pinyin) |
+|---------------|---------|-----------------|
+| Keystroke-to-char ratio | ≈1:1 | 3:1 to 6:1 |
+| Rhythm layers | Single | Dual (physical + cognitive) |
+| Pause meaning | Thinking | Thinking OR word selection |
+| Deletion meaning | Spelling correction | Pinyin OR candidate reselection |
 
 ## 📁 Repository Structure
 
@@ -176,41 +127,50 @@ CRPL/
 ├── crpl/
 │   ├── __init__.py
 │   ├── detector.py          # Core RhythmDetector class
-│   ├── analyzer.py          # Feature analysis algorithms
 │   └── types.py             # Data types and enums
 ├── demo/
-│   ├── test_rhythm_gui.py   # Tkinter GUI demo
-│   └── web/
-│       └── RhythmDetectorPro.jsx  # React web demo
-├── docs/
-│   ├── CRPL_Architecture.svg
-│   └── paper.pdf
-└── examples/
-    └── agent_integration.py  # Example agent integration
+│   ├── CRPL_RhythmDetectorPro.html  ⭐ Zero-dependency web demo!
+│   ├── test_gui.py                   Python GUI demo
+│   └── RhythmDetectorPro.jsx         React source
+└── docs/
+    ├── CRPL_Architecture.png          System architecture diagram
+    ├── Case 1 Expressive (steady_fast).png
+    ├── Case 2 Narrative (uneven).png
+    ├── Case 3 Deliberative (hesitant).png
+    └── Case 4 Deep Thinking (hesitant).png
 ```
 
-## 🤝 Contributing
+## 📄 Publications
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+- **Full Paper:** Y. Chen and A. Lin, "Affective Typing Patterns: A Fine-Grained Keystroke-Rhythm Perception Layer for Multi-Agent Cognition Systems," 2025. DOI: [10.13140/RG.2.2.11079.15525](https://doi.org/10.13140/RG.2.2.11079.15525)
+- **Demo:** Accepted for presentation at HHAI 2026 (Hybrid Human-Artificial Intelligence), Brussels, Belgium, July 2026. *(update after notification)*
+
+## 📝 Citation
+
+```bibtex
+@article{chen2025crpl,
+  title={Affective Typing Patterns: A Fine-Grained Keystroke-Rhythm
+         Perception Layer for Multi-Agent Cognition Systems},
+  author={Chen, Yingying and Lin, Anran},
+  year={2025},
+  doi={10.13140/RG.2.2.11079.15525}
+}
+```
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT License — see [LICENSE](LICENSE) for details.
 
 ## 👥 Authors
 
-- **Yingying Chen** - Independent Researcher, Calgary, Canada
-- **Anran Lin** - CelestelinAgent Research Group
+- **Yingying Chen** (Aria Chen) — Independent Researcher, Calgary, Canada
+- **Anran Lin** — CelestelinAgent Research Group
 
 ## 🙏 Acknowledgments
 
-This work is part of the [CelestelinAgent](https://github.com/CelestelinAgent) project, exploring new dimensions of human-AI interaction.
+This work is part of the [CelestelinAgent](https://github.com/CelestelinAgent) project, exploring new dimensions of human-AI interaction through cognitive perception, identity infrastructure, and continuous relational architecture.
 
 ---
-
-<p align="center">
-  <i>"The typing patterns humans produce are not noise to be filtered—they are signals worth perceiving."</i>
-</p>
 
 <p align="center">
   💜 CelestelinAgent Research © 2025
